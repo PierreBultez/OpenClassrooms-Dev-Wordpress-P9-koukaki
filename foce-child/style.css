@@ -1,0 +1,142 @@
+@charset "UTF-8";
+/*
+ Theme Name:  Fleurs d'orangers et chats errants - Oscars Short
+ Theme URI: https://www.koukaki.local
+ Author: Studio Koukaki
+ Author URI: https://www.koukaki.local
+ Template: foce
+ Description: Thème enfant à l'ocasion de la nomination aux Oscars Shorts
+ Version: 0.1
+ */
+/*--------------------------------------------------------------
+# Layouts
+--------------------------------------------------------------*/
+.hidden-text {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+@keyframes animatedTitle {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+h2 span {
+  display: inline-block;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+h3 span {
+  display: inline-block;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in-up {
+  animation: fadeInUp 2s ease forwards;
+  opacity: 0; /* Start invisible */
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in-down {
+  animation: fadeInDown 2s ease forwards;
+  opacity: 0; /* Start invisible */
+}
+
+@keyframes rotation1 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotation2 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes rotateYInfinite {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+.story h2::after {
+  animation: rotation2 3s linear infinite;
+  line-height: 0px;
+}
+.story__article::after {
+  animation: rotation1 4s linear infinite;
+  line-height: 0px;
+}
+
+#studio h2::before {
+  animation: rotation2 3s linear infinite;
+  line-height: 0px;
+}
+#studio h2::after {
+  animation: rotation1 4s linear infinite;
+  line-height: 0px;
+}
+#studio > div::before {
+  animation: rotateYInfinite 3s linear(0 0%, 0.22 2.1%, 0.86 6.5%, 1.11 8.6%, 1.3 10.7%, 1.35 11.8%, 1.37 12.9%, 1.37 13.7%, 1.36 14.5%, 1.32 16.2%, 1.03 21.8%, 0.94 24%, 0.89 25.9%, 0.88 26.85%, 0.87 27.8%, 0.87 29.25%, 0.88 30.7%, 0.91 32.4%, 0.98 36.4%, 1.01 38.3%, 1.04 40.5%, 1.05 42.7%, 1.05 44.1%, 1.04 45.7%, 1 53.3%, 0.99 55.4%, 0.98 57.5%, 0.99 60.7%, 1 68.1%, 1.01 72.2%, 1 86.7%, 1 100%) infinite;
+  transform-style: preserve-3d;
+  line-height: 0px;
+}
+
+/*--------------------------------------------------------------
+# Base
+--------------------------------------------------------------*/
+/* Elements
+--------------------------------------------- */
+.site-footer::before {
+  display: inline-block;
+  animation: rotation1 3s linear infinite;
+  line-height: 0px;
+}
+.site-footer::after {
+  display: inline-block;
+  animation: rotation2 5s linear infinite;
+  line-height: 0px;
+}
+.site-footer ul::after {
+  display: inline-block;
+  animation: rotation1 10s linear infinite;
+  line-height: 0px;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,21 @@
+.site-footer {
+  &::before {
+    display: inline-block; // Assurez-vous que l'image peut être transformée
+    animation: rotation1 3s linear infinite; // Définir la durée, le timing et la répétition
+    line-height: 0px;
+  }
+  &::after {
+    display: inline-block; // Assurez-vous que l'image peut être transformée
+    animation: rotation2 5s linear infinite; // Définir la durée, le timing et la répétition
+    line-height: 0px;
+  }
+  ul{
+    li {
+    }
+    &::after {
+      display: inline-block; // Assurez-vous que l'image peut être transformée
+      animation: rotation1 10s linear infinite; // Définir la durée, le timing et la répétition
+      line-height: 0px;
+    }
+  }
+}
