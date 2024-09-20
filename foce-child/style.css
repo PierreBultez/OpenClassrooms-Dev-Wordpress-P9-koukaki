@@ -103,6 +103,28 @@ h3 span {
   animation: rotation1 4s linear infinite;
   line-height: 0px;
 }
+.story #place {
+  display: flex;
+  background-image: url("./assets/images/Studio_Koukaki-image_place.png");
+  width: 100%;
+  min-height: 699px;
+  background-size: cover;
+}
+.story #place h3 {
+  background-image: url("/wp-content/themes/foce/assets/images/orange_place_bg.png");
+  margin-bottom: -1em;
+}
+.story #place > div {
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 6em;
+}
+.story #place > div p {
+  padding-left: 5em;
+}
 
 #studio h2::before {
   animation: rotation2 3s linear infinite;

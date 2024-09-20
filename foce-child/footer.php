@@ -18,7 +18,6 @@
             <li><a href="#">STUDIO KOUKAKI</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
-    <h2>Test de texte</h2>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
