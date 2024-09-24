@@ -11,6 +11,52 @@
 /*--------------------------------------------------------------
 # Layouts
 --------------------------------------------------------------*/
+.banner {
+  background-image: none;
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Ajuste à la hauteur de la fenêtre */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-size: unset;
+}
+.banner .video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+.banner .video-container video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Place la vidéo derrière le contenu */
+  will-change: transform;
+  transform: translate(-50%, -50%);
+}
+.banner .logo-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.banner img {
+  position: relative;
+  z-index: 1; /* Assure que le logo est au-dessus de la vidéo */
+  will-change: transform; /* Optimisation pour la performance du parallaxe */
+  width: 100%;
+}
+
 .hidden-text {
   display: inline-block;
   opacity: 0;
@@ -32,6 +78,7 @@ h2 span {
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
   opacity: 0;
+  will-change: transform;
 }
 
 h3 span {
@@ -39,6 +86,15 @@ h3 span {
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
   opacity: 0;
+  will-change: transform;
+}
+
+p span {
+  display: inline-block;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  will-change: transform;
 }
 
 @keyframes fadeInUp {
@@ -53,22 +109,22 @@ h3 span {
 }
 .fade-in-up {
   animation: fadeInUp 2s ease forwards;
-  opacity: 0; /* Start invisible */
+  opacity: 0;
 }
 
 @keyframes fadeInDown {
   from {
     opacity: 0;
-    transform: translateY(-200px);
+    transform: translate(-50%, calc(-50% - 200px));
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, -50%);
   }
 }
 .fade-in-down {
   animation: fadeInDown 2s ease forwards;
-  opacity: 0; /* Start invisible */
+  opacity: 0;
 }
 
 @keyframes rotation1 {
@@ -103,9 +159,79 @@ h3 span {
   animation: rotation1 4s linear infinite;
   line-height: 0px;
 }
+.story #characters {
+  margin: 6em;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.story #characters .swiper-container {
+  width: 100%;
+  padding: 2rem 0;
+}
+.story #characters .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 400px;
+}
+.story #characters .swiper-slide figure {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.story #characters .swiper-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.story #characters figcaption {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #000;
+}
+.story #characters .swiper-slide-shadow-left,
+.story #characters .swiper-slide-shadow-right {
+  background: rgba(244, 238, 217, 0.3);
+}
+.story #characters .swiper-slide-shadow-left {
+  box-shadow: -10px 0 20px rgba(0, 0, 0, 0.5);
+}
+.story #characters .swiper-slide-shadow-right {
+  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.5);
+}
+.story #characters .swiper-button-next, .story #characters .swiper-button-prev {
+  color: #000;
+}
+.story #characters .swiper-3d .swiper-slide-shadow, .story #characters .swiper-3d .swiper-slide-shadow-bottom, .story #characters .swiper-3d .swiper-slide-shadow-left, .story #characters .swiper-3d .swiper-slide-shadow-right, .story #characters .swiper-3d .swiper-slide-shadow-top {
+  border-radius: 30px;
+}
+.story #characters h3 {
+  background-image: url("/wp-content/themes/foce/assets/images/orange_characters_bg.png");
+}
+.story #characters div {
+  flex: 1;
+}
+.story #characters .other-characters {
+  display: flex;
+  flex-wrap: wrap;
+}
+.story #characters .other-characters figure {
+  width: 50%;
+  padding: 2% 10%;
+  margin: 0;
+}
 .story #place {
   display: flex;
-  background-image: url("./assets/images/Studio_Koukaki-image_place.png");
+  background-image: url("/wp-content/themes/foce-child/assets/images/Studio_Koukaki-image_place.png");
   width: 100%;
   min-height: 699px;
   background-size: cover;
@@ -125,6 +251,20 @@ h3 span {
 .story #place > div p {
   padding-left: 5em;
 }
+.story .cloud {
+  position: absolute;
+  z-index: 2;
+  opacity: 0.8;
+  filter: blur(15px);
+}
+.story .big-cloud {
+  top: 68%;
+  right: 8%;
+}
+.story .little-cloud {
+  top: 77%;
+  right: 35%;
+}
 
 #studio h2::before {
   animation: rotation2 3s linear infinite;
@@ -140,6 +280,25 @@ h3 span {
   line-height: 0px;
 }
 
+#nomination {
+  position: relative;
+  margin-top: 3em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+#nomination h3 {
+  text-align: left;
+  background-image: url("/wp-content/themes/foce-child/assets/images/Rectangle_23.png");
+  background-size: 100% 100%;
+  width: 60%;
+  font-size: 42px;
+  padding: 84px;
+}
+#nomination img {
+  padding: 84px 0;
+}
+
 /*--------------------------------------------------------------
 # Base
 --------------------------------------------------------------*/
@@ -148,17 +307,213 @@ h3 span {
 .site-footer::before {
   display: inline-block;
   animation: rotation1 3s linear infinite;
-  line-height: 0px;
+  line-height: 0;
+  will-change: transform;
 }
 .site-footer::after {
   display: inline-block;
   animation: rotation2 5s linear infinite;
-  line-height: 0px;
+  line-height: 0;
+  will-change: transform;
 }
 .site-footer ul::after {
   display: inline-block;
   animation: rotation1 10s linear infinite;
+  line-height: 0;
+  will-change: transform;
+}
+
+/*--------------------------------------------------------------
+# Components
+--------------------------------------------------------------*/
+/* Navigation
+--------------------------------------------- */
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(5px, -5px);
+  }
+  50% {
+    transform: translate(0, -10px);
+  }
+  75% {
+    transform: translate(-5px, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+#burger-menu {
+  cursor: pointer;
+  height: 27px;
+  width: 27px;
+  margin: 25px 0px;
+  overflow: visible;
+  position: absolute;
+  top: 0;
+  right: 10%;
+}
+#burger-menu span,
+#burger-menu span:before,
+#burger-menu span:after {
+  background: #000;
+  display: block;
+  height: 2px;
+  opacity: 1;
+  position: absolute;
+  transition: 0.3s ease-in-out;
+  will-change: transform;
+}
+#burger-menu span:before,
+#burger-menu span:after {
+  content: "";
+}
+#burger-menu span:before {
+  left: 0px;
+  top: -10px;
+  width: 27px;
+}
+#burger-menu span {
+  right: 0px;
+  top: 13px;
+  width: 27px;
+}
+#burger-menu span:after {
+  left: 0px;
+  top: 10px;
+  width: 27px;
+}
+#burger-menu.close span:before {
+  top: 0px;
+  transform: rotate(90deg);
+  width: 27px;
+}
+#burger-menu.close span {
+  transform: rotate(-45deg);
+  top: 13px;
+  width: 27px;
+}
+#burger-menu.close span:after {
+  top: 0px;
+  left: 0;
+  transform: rotate(90deg);
+  opacity: 0;
+  width: 0;
+}
+
+#menu {
+  min-width: 100%;
+  min-height: 100%;
+  height: 100vh;
+  visibility: hidden;
+  opacity: 0;
+  text-align: center;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+#menu.overlay {
+  visibility: visible;
+  opacity: 1;
+  background: #FFF5E9;
+}
+#menu ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+  z-index: 3;
+}
+#menu li {
+  list-style: none;
+}
+#menu li:hover {
+  text-shadow: 0px 0px 14px #FF5C00;
+}
+#menu li p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#menu a {
+  color: #000;
+  display: block;
+  font-size: 64px;
+  text-decoration: none;
+  z-index: 10;
+  will-change: transform;
+}
+#menu img {
+  margin-top: 20px;
+}
+#menu .decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+}
+#menu .flower {
+  position: absolute;
+}
+#menu .flower-1 {
+  top: 5%;
+  left: -3%;
+  width: 170px;
+  animation: rotation2 5s linear infinite;
   line-height: 0px;
+}
+#menu .flower-2 {
+  top: 45%;
+  left: 15%;
+  width: 70px;
+  animation: rotation1 7s linear infinite;
+  line-height: 0px;
+}
+#menu .flower-3 {
+  top: 10%;
+  right: 10%;
+  width: 210px;
+  animation: rotation1 6s linear infinite;
+  line-height: 0px;
+}
+#menu .flower-4 {
+  top: 35%;
+  right: -1%;
+  width: 75px;
+  animation: rotation2 8s linear infinite;
+  line-height: 0px;
+}
+#menu .flower-5 {
+  top: 50%;
+  right: -20%;
+  width: 625px;
+  animation: rotation1 4s linear infinite;
+  line-height: 0px;
+}
+#menu .cat {
+  position: absolute;
+}
+#menu .cat-1 {
+  top: 15%;
+  left: 20%;
+  width: 120px;
+  animation: float 4s ease-in-out infinite;
+}
+#menu .cat-2 {
+  bottom: 20%;
+  left: 5%;
+  width: 110px;
+  animation: float 5s ease-in-out infinite;
+}
+#menu .cat-3 {
+  bottom: 40%;
+  right: 15%;
+  width: 120px;
+  animation: float 4s ease-in-out infinite;
 }
 
 /*# sourceMappingURL=style.css.map */

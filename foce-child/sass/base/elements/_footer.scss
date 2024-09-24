@@ -1,21 +1,24 @@
 .site-footer {
   &::before {
-    display: inline-block; // Assurez-vous que l'image peut être transformée
-    animation: rotation1 3s linear infinite; // Définir la durée, le timing et la répétition
-    line-height: 0px;
+    display: inline-block; // S'assure que l'image peut être transformée
+    animation: rotation1 3s linear infinite;
+    line-height: 0;
+    will-change: transform; // Prépare le navigateur à gérer la transformation
   }
   &::after {
-    display: inline-block; // Assurez-vous que l'image peut être transformée
-    animation: rotation2 5s linear infinite; // Définir la durée, le timing et la répétition
-    line-height: 0px;
+    display: inline-block; // S'assure que l'image peut être transformée
+    animation: rotation2 5s linear infinite;
+    line-height: 0;
+    will-change: transform; // Prépare le navigateur à gérer la transformation
   }
   ul{
     li {
     }
     &::after {
-      display: inline-block; // Assurez-vous que l'image peut être transformée
-      animation: rotation1 10s linear infinite; // Définir la durée, le timing et la répétition
-      line-height: 0px;
+      display: inline-block; // S'assure que l'image peut être transformée
+      animation: rotation1 10s linear infinite;
+      line-height: 0;
+      will-change: transform; // Prépare le navigateur à gérer la transformation
     }
   }
 }
