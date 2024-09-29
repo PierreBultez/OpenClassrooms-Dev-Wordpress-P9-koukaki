@@ -293,6 +293,7 @@ p span {
   width: 60%;
   font-size: 42px;
   padding: 84px;
+  word-break: keep-all;
 }
 #nomination img {
   padding: 84px 0;
