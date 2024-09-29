@@ -7,7 +7,7 @@ get_header();
 
             <!-- Div enveloppante pour la vidéo -->
             <div class="video-container">
-                <video autoplay muted loop id="bg-video" class="fade-in-down">
+                <video autoplay muted loop id="bg-video" class="fade-in-down" poster="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/banner.png' ); ?>">
                     <source src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/video_header.mp4' ); ?>" type="video/mp4">
                     <?php esc_html_e('Votre navigateur ne supporte pas les balises vidéo.', 'foce'); ?>
                 </video>

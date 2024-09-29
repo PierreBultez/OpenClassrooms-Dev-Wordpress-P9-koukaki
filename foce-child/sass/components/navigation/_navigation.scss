@@ -225,3 +225,32 @@
 		animation: float 4s ease-in-out infinite;  // Animation continue pour le flottement
 	}
 }
+
+$breakpoint__large_phone: 700px;
+
+@media all and (max-width: #{$breakpoint__large_phone}) {
+	.menu-toggle {
+		display: none;
+	}
+
+	.decorations {
+		display: none;
+	}
+
+	#menu {
+		min-height: 0;
+		height: 10vh;
+
+		a {
+			font-size: 40px;
+		}
+
+		&.overlay {
+			height: 60vh;
+		}
+	}
+
+	#burger-menu {
+		z-index: 10;
+	}
+}

@@ -27,41 +27,75 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Animation sur hover pour les headings
-    headings.forEach(textContainer => {
-        const animateOnHover = () => {
-            animateLetters(textContainer);
-            textContainer.removeEventListener('mouseover', animateOnHover);
-        };
-        textContainer.addEventListener('mouseover', animateOnHover);
-    });
+    // Fonction pour vérifier la taille de l'écran
+    function shouldAnimate() {
+        return window.matchMedia('(min-width: 700px)').matches; // Animation uniquement sur les écrans plus larges que 700px
+    }
+
+    // Ajouter l'événement hover uniquement si l'écran est suffisamment large
+    function setupHoverAnimation() {
+
+        // Animation sur hover pour les headings
+        headings.forEach(textContainer => {
+            const animateOnHover = () => {
+                animateLetters(textContainer);
+                textContainer.removeEventListener('mouseover', animateOnHover);
+            };
+            if (shouldAnimate()) {
+                // Ajouter l'événement si la condition de taille d'écran est respectée
+                textContainer.addEventListener('mouseover', animateOnHover);
+            }
+            // Appel initial lors du chargement de la page
+            window.addEventListener('DOMContentLoaded', setupHoverAnimation);
+
+            // Réappliquer la configuration au redimensionnement de la fenêtre
+            window.addEventListener('resize', setupHoverAnimation);
+        });
+    }
 
     // Fonction pour animer les titres du menu
     function animateMenuTitles() {
-        menuHeadings.forEach((textContainer, index) => {
-            setTimeout(() => animateLetters(textContainer), index * 1000);  // Délai entre chaque titre
-        });
+        if (shouldAnimate()) { // Empêcher l'animation sur les petits écrans
+            menuHeadings.forEach((textContainer, index) => {
+                setTimeout(() => animateLetters(textContainer), index * 1000);  // Délai entre chaque titre
+            });
+        }
     }
 
-    // Réinitialisation des titres du menu
+    // Réagir aux changements de taille d'écran
+    window.addEventListener('resize', () => {
+        if (!shouldAnimate()) {
+            resetMenuTitles(); // Réinitialiser si on revient à un petit écran
+        }
+    });
+
     function resetMenuTitles() {
-        menuHeadings.forEach(textContainer => {
-            textContainer.style.opacity = 0;
-            const originalText = Array.from(textContainer.querySelectorAll('span')).map(span => span.textContent === '\u00A0' ? ' ' : span.textContent).join('');
-            textContainer.textContent = originalText;
-        });
+        if (shouldAnimate()) { // Empêcher la réinitialisation sur les petits écrans
+            menuHeadings.forEach(textContainer => {
+                textContainer.style.opacity = 0;
+                const originalText = Array.from(textContainer.querySelectorAll('span')).map(span => span.textContent === '\u00A0' ? ' ' : span.textContent).join('');
+                textContainer.textContent = originalText;
+            });
+        }
     }
+
+    // Réagir aux changements de taille d'écran
+    window.addEventListener('resize', () => {
+        resetMenuTitles(); // Ne réinitialise que sur les grands écrans
+    });
 
     // Réinitialisation après clic sur lien
     function resetMenuTitlesAfterClick() {
-        menuHeadings.forEach(textContainer => {
-            textContainer.style.opacity = 0;
-            const originalText = Array.from(textContainer.querySelectorAll('span')).map(span => span.textContent === '\u00A0' ? ' ' : span.textContent).join('');
-            textContainer.textContent = originalText;
-            textContainer.style.animation = 'none';
-            void textContainer.offsetWidth;
-            textContainer.style.animation = '';
-        });
+        if (shouldAnimate()) { // Empêcher la réinitialisation sur les petits écrans
+            menuHeadings.forEach(textContainer => {
+                textContainer.style.opacity = 0;
+                const originalText = Array.from(textContainer.querySelectorAll('span')).map(span => span.textContent === '\u00A0' ? ' ' : span.textContent).join('');
+                textContainer.textContent = originalText;
+                textContainer.style.animation = 'none';
+                void textContainer.offsetWidth; // Forcer le recalcul du layout pour réinitialiser l'animation
+                textContainer.style.animation = ''; // Réinitialiser l'animation
+            });
+        }
     }
 
     // Ouvrir/fermer le menu burger

@@ -22,3 +22,17 @@
     }
   }
 }
+
+$breakpoint__large_phone: 700px;
+
+@media all and (max-width: #{$breakpoint__large_phone}) {
+  .site-footer {
+    ul{
+      li {
+        a {
+        font-size: 0.725rem;
+        }
+      }
+    }
+  }
+}
